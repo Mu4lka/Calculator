@@ -38,7 +38,7 @@ namespace Calculator
             string Sing = Console.ReadLine();
             if (!(Sing == "+" ^ Sing == "-" ^ Sing == "*" ^ Sing == "/"))
             {
-                Console.WriteLine("Неверный знак!");
+                Console.WriteLine("Неверный знак! Попробуйте ещё раз...");
             }
             else
             {
