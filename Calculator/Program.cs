@@ -5,75 +5,62 @@ namespace Calculator
 {
     internal class Program
     {
-        static void Sum(double FirstVariables, double SecondVariables)
-        {
-            Console.WriteLine(FirstVariables + SecondVariables);
-        }
-        static void Subtraction(double FirstVariables, double SecondVariables)
-        {
-            Console.WriteLine(FirstVariables - SecondVariables);
-        }
-        static void Multiplication(double FirstVariables, double SecondVariables)
-        {
-            Console.WriteLine(FirstVariables * SecondVariables);
-        }
-        static void Divide(double FirstVariables, double SecondVariables)
-        {
-            Console.WriteLine(FirstVariables / SecondVariables);
-        }
-
         static void Main()
         {
-            double FirstVariables;
-            double SecondVariables;
+            Console.WriteLine("Калькулятор в столбик");
+            Console.WriteLine("1. Впишите в первую строку число");
+            Console.WriteLine("2. Впишите во вторую строку знак вычисления: +, -, *, /");
+            Console.WriteLine("3. Впишите в третью строку число");
+            double FirstNumber;
+            double SecondNumber;
             try
             {
-                FirstVariables = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                FirstNumber = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             }
             catch
             {
-                Console.WriteLine("Первый аргумент не число!");
+                Console.WriteLine("Первое число указано неверно!");
                 return;
             }
             string Sing = Console.ReadLine();
-            if (!(Sing == "+" ^ Sing == "-" ^ Sing == "*" ^ Sing == "/"))
-            {
-                Console.WriteLine("Неверный знак! Попробуйте ещё раз...");
-            }
-            else
+            if (Sing == "+" ^ Sing == "-" ^ Sing == "*" ^ Sing == "/")
             {
                 try
                 {
-                    SecondVariables = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    SecondNumber = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
                 }
                 catch
                 {
-                    Console.WriteLine("Второй агрумент не число!");
+                    Console.WriteLine("Второе число указано неверно!");
                     return;
                 }
                 if (Sing == "+")
                 {
-                    Sum(FirstVariables, SecondVariables);
+                    Console.WriteLine(FirstNumber + SecondNumber);
                 }
                 if (Sing == "-")
                 {
-                    Subtraction(FirstVariables, SecondVariables);
+                    Console.WriteLine(FirstNumber - SecondNumber);
                 }
                 if (Sing == "*")
                 {
-                    Multiplication(FirstVariables, SecondVariables);
+                    Console.WriteLine(FirstNumber * SecondNumber);
                 }
                 if (Sing == "/")
                 {
-                    if (SecondVariables == 0)
+                    if (SecondNumber == 0)
                     {
                         Console.WriteLine("На ноль делить нельзя!");
                     }
                     else
                     {
-                        Divide(FirstVariables, SecondVariables);
+                        Console.WriteLine(FirstNumber / SecondNumber);
                     }
                 }
+            }
+            else
+            {
+                Console.WriteLine("Несуществующий знак вычисления!");
             }
         }
     }
