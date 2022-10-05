@@ -22,13 +22,13 @@ namespace Calculator
         }
         public static void Main()
         {
-            char[] Sings = {'+', '-', '*', '/'};
-            string expressString = Console.ReadLine();
-            string[] stringSplit = expressString.Split(Sings);
             try
             {
+                char[] Sings = { '+', '-', '*', '/' };
+                string expressString = Console.ReadLine();
+                string[] stringSplit = expressString.Split(Sings);
                 var firstNumber = double.Parse(stringSplit[0], CultureInfo.InvariantCulture);
-                var secondNumber = double.Parse(stringSplit[1], CultureInfo.InvariantCulture);
+                var secondNumber = double.Parse(expressString.Substring(stringSplit[0].Length+1), CultureInfo.InvariantCulture);
                 string sing = expressString.Substring(stringSplit[0].Length,1);
                 Print(Calculate(firstNumber, secondNumber, sing));
                 Console.ReadKey();
