@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Globalization;
+using System.Net.NetworkInformation;
+using System.Runtime.ExceptionServices;
 
 namespace Calculator
 {
@@ -16,9 +18,17 @@ namespace Calculator
                 case "+": return firstNumber + secondNumber;
                 case "-": return firstNumber - secondNumber;
                 case "*": return firstNumber * secondNumber;
-                case "/": return firstNumber / secondNumber;
+                case "/": return Divide(firstNumber, secondNumber);
             }
-            return 0;
+            return double.NaN;
+        }
+        public static double Divide(double firstNumber, double secondNumber)
+        {
+                if (secondNumber == 0)
+                    Console.WriteLine("На ноль делить нельзя!");
+                else
+                    return firstNumber / secondNumber;
+                return double.NaN;
         }
         public static void Main()
         {
