@@ -35,11 +35,11 @@ namespace Calculator
             try
             {
                 char[] Sings = { '+', '-', '*', '/' };
-                string expressionString = Console.ReadLine();
-                string[] stringSplit = expressionString.Split(Sings);
-                var firstNumber = double.Parse(stringSplit[0], CultureInfo.InvariantCulture);
-                var secondNumber = double.Parse(expressionString.Substring(stringSplit[0].Length+1), CultureInfo.InvariantCulture);
-                string sing = expressionString.Substring(stringSplit[0].Length,1);
+                string expression = Console.ReadLine();
+                string[] operands = expression.Split(Sings);
+                var firstNumber = double.Parse(operands[0], CultureInfo.InvariantCulture);
+                var secondNumber = double.Parse(expression.Substring(operands[0].Length+1), CultureInfo.InvariantCulture);
+                string sing = expression.Substring(operands[0].Length,1);
                 Print(Calculate(firstNumber, secondNumber, sing));
                 Console.ReadKey();
             }
