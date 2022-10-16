@@ -7,46 +7,62 @@ namespace Calculator
 {
     internal class Program
     {
-        public static void Print(double result)
+        public static void Calculate(double firstNumber, string sing, double secondNumber)
         {
-            Console.WriteLine($"={result}");
-        }
-        public static double Calculate(double firstNumber, double secondNumber, string sing)
-        {
-            switch (sing)
+            if (sing == "+")
             {
-                case "+": return firstNumber + secondNumber;
-                case "-": return firstNumber - secondNumber;
-                case "*": return firstNumber * secondNumber;
-                case "/": return Divide(firstNumber, secondNumber);
+                Console.WriteLine(firstNumber + secondNumber);
             }
-            return double.NaN;
-        }
-        public static double Divide(double firstNumber, double secondNumber)
-        {
+            if (sing == "-")
+            {
+                Console.WriteLine(firstNumber - secondNumber);
+            }
+            if (sing == "*")
+            {
+                Console.WriteLine(firstNumber * secondNumber);
+            }
+            if (sing == "/")
+            {
                 if (secondNumber == 0)
+                {
                     Console.WriteLine("На ноль делить нельзя!");
+                }
                 else
-                    return firstNumber / secondNumber;
-                return double.NaN;
+                {
+                    Console.WriteLine(firstNumber / secondNumber);
+                }
+            }
         }
         public static void Main()
         {
+            double firstNumber;
+            double secondNumber;
             try
             {
-                char[] Sings = { '+', '-', '*', '/' };
-                string expression = Console.ReadLine();
-                string[] operands = expression.Split(Sings);
-                var firstNumber = double.Parse(operands[0], CultureInfo.InvariantCulture);
-                var secondNumber = double.Parse(expression.Substring(operands[0].Length+1), CultureInfo.InvariantCulture);
-                string sing = expression.Substring(operands[0].Length,1);
-                Print(Calculate(firstNumber, secondNumber, sing));
-                Console.ReadKey();
+                firstNumber = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             }
             catch
             {
-                Console.WriteLine("Данная строка имела неверный формат");
-                Console.ReadKey();
+                Console.WriteLine("Первое число указано неверно!");
+                return;
+            }
+            string sing = Console.ReadLine();
+            if (sing == "+" || sing == "-" || sing == "*" || sing == "/")
+            {
+                try
+                {
+                    secondNumber = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                }
+                catch
+                {
+                    Console.WriteLine("Второе число указано неверно!");
+                    return;
+                }
+                Calculate(firstNumber, sing, secondNumber);
+            }
+            else
+            {
+                Console.WriteLine("Несуществующий знак вычисления!");
             }
         }
     }
